@@ -22,6 +22,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
+      if: ${{ startsWith(matrix.os, 'ubuntu') }}
+      run: sudo apt install -y unixodbc-dev
     - name: Install Build Dependencies
       if: ${{ startsWith(matrix.os, 'macos') }}
       run: brew install unixodbc
